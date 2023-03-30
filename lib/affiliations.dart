@@ -40,9 +40,12 @@ class _StudentAffiliationsState extends State<StudentAffiliations> {
           }
 
           return new ListView(
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+             children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              String documentID = document.id;
+             
               Map<String, dynamic> data =
                   document.data()! as Map<String, dynamic>;
+                  String Subject = data['name'];
               return new Card(
                 color: Color.fromARGB(255, 9, 26, 47).withOpacity(0.2),
                 child: new Padding(
@@ -54,37 +57,20 @@ class _StudentAffiliationsState extends State<StudentAffiliations> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Row(
+                              
                               children: <Widget>[
-                                 Text(data['club'],
+                                 Text(Subject + '     ' + data['Grade1'] +'         '+ data['Grade2']+'         '+ data['Grade3']+'         '+ data['Grade4'],
                                  style: TextStyle(
                                   color: Color.fromARGB(246, 255, 208, 0)
                                  ),),
                               ],
-                            )
+                            ),
+                            
                             
                           ],
                         ),
                       ),
-                      new IconButton(
-                        icon: Icon(Icons.delete,
-                        color: Colors.red,),
-                        onPressed: () {
-                          document.reference.delete();
-                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                            return FirestoreDataScreen();
-                          }));
-
-
-                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Color.fromARGB(255, 255, 0, 0), // set the background color
-                              content: Text('Leave'), // set the message text
-                              duration: Duration(seconds: 2), // set the duration for how long the message will be displayed
-                            ),
-                          ); 
-                          
-                        },
-                      ),
+                     
                     ],
                   ),
                 ),
