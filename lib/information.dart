@@ -102,7 +102,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
     super.initState();
     // Retrieve the current teacher data and populate the text fields
     FirebaseFirestore.instance
-        .collection('teachers')
+        .collection('students')
         .doc(widget.documentId)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
@@ -125,7 +125,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
         // Only update the fields that have changed
         if (newName != _initialName || newSubject != _initialSubject) {
           await FirebaseFirestore.instance
-              .collection('teachers')
+              .collection('students')
               .doc(widget.documentId)
               .update({
             if (newName != _initialName) 'name': newName,
@@ -143,7 +143,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Teacher'),
+        title: Text('Edit Information'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -194,7 +194,17 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: _updateTeacher,
+                onPressed: () {
+                  _updateTeacher();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Color.fromARGB(255, 23, 133, 60), // set the background color
+                    content: Text('Successfully Updated'), // set the message text
+                    duration: Duration(seconds: 2), // set the duration for how long the message will be displayed
+                  ),
+        );
+                },
+                
                 child: Text('Update'),
               ),
             ],
