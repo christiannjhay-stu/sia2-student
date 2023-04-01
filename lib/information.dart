@@ -112,7 +112,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
         _nameController.text = data['name'];
         _subjectController.text = data['section'];
         _initialName = data['name'];
-        _initialSubject = data['section'];
+       
       }
     });
   }
@@ -129,7 +129,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
               .doc(widget.documentId)
               .update({
             if (newName != _initialName) 'name': newName,
-            if (newSubject != _initialSubject) 'section': newSubject,
+           
           });
         }
         Navigator.pop(context); // Navigate back to the previous screen
@@ -175,6 +175,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
                 },
               ),
               TextFormField(
+                enabled: false,
                 style: TextStyle(
                   color: Colors.white
                 ),

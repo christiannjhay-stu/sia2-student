@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-import 'package:read_data/affiliations.dart';
+import 'package:read_data/Grades.dart';
 import 'package:read_data/detailScreen.dart';
 import 'package:read_data/information.dart';
 import 'package:read_data/loginScreen.dart';

@@ -277,7 +277,7 @@ class _LoginScreenState extends State < LoginScreen > {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.only(top: 8, left: 20),
-                              hintText: 'Username',
+                              hintText: 'Email',
                               hintStyle: TextStyle(
                                 color: Colors.white,
                               )
