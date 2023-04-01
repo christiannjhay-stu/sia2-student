@@ -139,6 +139,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
   late String _initialName;
   late String _initialSubject;
    late String _initialLRN;
+   
 
   @override
   void initState() {
@@ -165,6 +166,10 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
 
         _LRNController.text = data['LRN'];
         _initialName = data['name'];
+        _initialEmail = data['email'];
+        _initialSubject = data['section'];
+        _initialAddress = data['address'];
+        _initialReligion = data['religion'];
        
       }
     });
@@ -174,14 +179,19 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
     if (_formKey.currentState!.validate()) {
       try {
         String newName = _nameController.text;
-        String newSubject = _subjectController.text;
+        
+        String newAddress = _AddressController.text;
+
+        String newReligion = _ReligionController.text;
         // Only update the fields that have changed
-        if (newName != _initialName || newSubject != _initialSubject) {
+        if (newName != _initialName || newAddress != _initialAddress || newReligion != _initialReligion) {
           await FirebaseFirestore.instance
               .collection('students')
               .doc(widget.documentId)
               .update({
             if (newName != _initialName) 'name': newName,
+            if (newAddress != _initialAddress) 'address': newAddress,
+            if (newReligion != _initialReligion) 'religion': newReligion,
            
           });
         }
@@ -323,7 +333,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
                 },
               ),
               TextFormField(
-                enabled: false,
+                
                 style: TextStyle(
                   color: Colors.white
                 ),
@@ -342,7 +352,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
                 },
               ),
                TextFormField(
-                enabled: false,
+                
                 style: TextStyle(
                   color: Colors.white
                 ),
