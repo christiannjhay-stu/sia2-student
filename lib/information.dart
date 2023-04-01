@@ -51,15 +51,74 @@ class _InformationState extends State<Information> {
               Map<String, dynamic> data = document.data() as Map<String, dynamic>;
              
               return ListTile(
-                title: Text(data['name'],
+                title: Center(
+                  child:Text(data['name'],
                 style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                   color: Colors.white
-                ),),
-                subtitle: Text(data['section'],style: TextStyle(
-                  color: Colors.white
-                ),),
+                ),), 
+                ),
+                
+                subtitle: Column(
+                  
+                  children: < Widget > [
+                    SizedBox(height: 10,),
+                    Text('Section', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['section'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                    SizedBox(height: 10,),
+                    Text('LRN', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['LRN'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                    SizedBox(height: 10,),
+                    Text('Email', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['email'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                     SizedBox(height: 10,),
+                     Text('Address', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['address'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                     SizedBox(height: 10,),
+                     Text('Mother Tongue', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['MT'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                     SizedBox(height: 10,),
+                     Text('Gender', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['gender'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                     SizedBox(height: 10,),
+                     Text('Mothers name', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['mother'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                     SizedBox(height: 10,),
+                     Text('Fathers name', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['father'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                     SizedBox(height: 10,),
+                     Text('Relationship with Guardian', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['relationship'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                     SizedBox(height: 10,),
+                     Text('Religion', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['religion'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                  ],
+                ),
+  
                 trailing: IconButton(
-                  icon: Icon(Icons.edit),
+                  icon: Icon(Icons.edit,
+                  color: Colors.white,),
                    onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
                             return EditTeacherScreen(documentId: documentId);
