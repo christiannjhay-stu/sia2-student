@@ -94,8 +94,51 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _subjectController = TextEditingController();
+  final _LRNController = TextEditingController();
+
+  //GENDER
+  final _GenderController = TextEditingController();
+  //MOTHER
+  final _MotherController = TextEditingController();
+  //FATHER
+  final _FatherController = TextEditingController();
+  //ADDRESS
+  final _AddressController = TextEditingController();
+  //RELIGON
+  final _ReligionController = TextEditingController();
+  //MT
+  final _MTController = TextEditingController();
+  //EMAIL
+   final _EmailController = TextEditingController();
+
+
+
+
+  //BDAY
+
+
+
+
+  //GENDER
+   late String _initialGender;
+  //MOTHER
+  late String _initialMother;
+  //FATHER
+  late String _initialFather;
+  //ADDRESS
+  late String _initialAddress;
+  //RELIGON
+  late String _initialReligion;
+  //MT
+  late String _initialMT;
+  //EMAIL
+  late String _initialEmail;
+
+  //BDAY
+
   late String _initialName;
   late String _initialSubject;
+   late String _initialLRN;
 
   @override
   void initState() {
@@ -111,6 +154,16 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
             documentSnapshot.data() as Map<String, dynamic>;
         _nameController.text = data['name'];
         _subjectController.text = data['section'];
+        _GenderController.text = data['gender'];
+        _MotherController.text =  data ['mother'];
+        _FatherController.text = data['father'];
+        _AddressController.text = data['address'];
+        _ReligionController.text = data['religion'];
+        _MTController.text = data['MT'];
+        _EmailController.text = data['email'];
+
+
+        _LRNController.text = data['LRN'];
         _initialName = data['name'];
        
       }
@@ -185,6 +238,158 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
                     color: Color.fromARGB(255, 251, 183, 24)
                   ),
                   labelText: 'Section',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a subject';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _LRNController,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'LRN',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a subject';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _GenderController,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Gender',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a subject';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _MotherController,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Mother',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a subject';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _FatherController,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Father',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a subject';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _AddressController,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Address',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a subject';
+                  }
+                  return null;
+                },
+              ),
+               TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _ReligionController,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Religion',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a subject';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _MTController,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Mother Tongue',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a subject';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _EmailController,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Email',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
