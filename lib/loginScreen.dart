@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:read_data/SignUpScreen.dart';
 import 'package:read_data/homeScreen.dart';
 
 
@@ -346,7 +347,39 @@ class _LoginScreenState extends State < LoginScreen > {
                       ),
                     ), 
                     SizedBox(height: 2),
-                  
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text(
+                            "Not yet enrolled?",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              letterSpacing: 1.2
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                                return CreateStudent();
+                              }));
+                            },
+                            child: Text(
+                              'Pre Register',
+                              style: TextStyle(
+                                color: Color.fromARGB(246, 255, 208, 0),
+                                fontSize: 10,
+                                letterSpacing: 1.2,
+
+                              ),
+                            )
+                          ),
+                        )
+                      ],
+                    ),
                     Footer(),
                   ],
                 ),
