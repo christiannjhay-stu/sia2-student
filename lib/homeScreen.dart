@@ -137,7 +137,7 @@ class FirestoreDataScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 leading: Icon(Icons.work),
-                title: const Text('Affiliations'),
+                title: const Text('My Grades'),
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
                             return StudentAffiliations(email: email);

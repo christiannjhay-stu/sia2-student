@@ -17,7 +17,7 @@ class _StudentAffiliationsState extends State<StudentAffiliations> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 9, 26, 47),
-        title: Text('Student Affiliations'),
+        title: Text('My Grades'),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
