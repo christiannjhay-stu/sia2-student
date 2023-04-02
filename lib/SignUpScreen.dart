@@ -3,10 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:read_data/homeScreen.dart';
+import 'package:intl/intl.dart';
 
 class CreateStudent extends StatefulWidget {
+  final TextEditingController _controller = TextEditingController();
 
-  const CreateStudent({
+  CreateStudent({
     Key ? key
   }): super(key: key);
 
@@ -18,6 +20,10 @@ class CreateStudent extends StatefulWidget {
 
 class _CreateStudentState extends State < CreateStudent > {
 
+    DateTime? _selectedDate;
+
+
+    
 
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
@@ -33,7 +39,33 @@ class _CreateStudentState extends State < CreateStudent > {
     final ReligionController = TextEditingController();
     final MTController = TextEditingController();
 
+  Future<void> _selectDate(BuildContext context) async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(1900),
+    lastDate: DateTime.now(),
+  );
 
+  if (picked != null && picked != _selectedDate) {
+    setState(() {
+      _selectedDate = picked;
+      DateTime truncatedDate = DateTime(
+        picked.year,
+        picked.month,
+        picked.day,
+        0,
+        0,
+        0,
+        0,
+        0,
+      );
+      String formattedDateString =
+          DateFormat('dd/MM/yyyy').format(truncatedDate);
+      widget._controller.text = formattedDateString;
+    });
+  }
+}
 
   void _createStudent () async {
 
@@ -43,14 +75,14 @@ class _CreateStudentState extends State < CreateStudent > {
     String username = usernameController.text;
 
     
-    final String gender = GenderController.text;
-    final String Guardian = GuardianController.text;
-    final String Relationship = RelationshipController.text;
-    final String Mother = MotherController.text;
-    final String Father = FatherController.text;
-    final String Address = AddressController.text;
-    final String Religion = ReligionController.text;
-    final String MT = MTController.text;
+    String gender = GenderController.text;
+    String Guardian = GuardianController.text;
+    String Relationship = RelationshipController.text;
+    String Mother = MotherController.text;
+    String Father = FatherController.text;
+    String Address = AddressController.text;
+    String Religion = ReligionController.text;
+    String MT = MTController.text;
 
 
 
@@ -66,6 +98,7 @@ class _CreateStudentState extends State < CreateStudent > {
         "LRN": username,
         "email": email,
         "password": password,
+        "bithday":DateFormat('dd/MM/yyyy').format(_selectedDate ?? DateTime.now()),
 
 
          "section": ''
@@ -279,7 +312,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   width: 340,
                   child: TextField(
                     controller: GenderController,
-                    obscureText: true,
+                    
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white
@@ -312,22 +345,20 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
-                    controller: passwordController,
-                    obscureText: true,
-                    keyboardType: TextInputType.emailAddress,
-                    style: TextStyle(
-                      color: Colors.white
-                    ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
+                  controller: widget._controller,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
                       contentPadding: EdgeInsets.only(top: 8, left: 20),
-                      hintText: 'Birthday',
+                      hintText: 'dd/mm/yyyy',
                       hintStyle: TextStyle(
                         color: Colors.white,
 
                       )
-                    ),
-                  )
+                  ),
+                  readOnly: true,
+                  onTap: () => _selectDate(context),
+                  keyboardType: TextInputType.datetime,
+                ),
                 )
               ],
             ),
@@ -347,7 +378,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   width: 340,
                   child: TextField(
                     controller: GuardianController,
-                    obscureText: true,
+                    
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white
@@ -381,7 +412,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   width: 340,
                   child: TextField(
                     controller: RelationshipController,
-                    obscureText: true,
+                    
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white
@@ -415,7 +446,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   width: 340,
                   child: TextField(
                     controller: MotherController,
-                    obscureText: true,
+                   
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white
@@ -449,7 +480,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   width: 340,
                   child: TextField(
                     controller: FatherController,
-                    obscureText: true,
+                    
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white
@@ -483,7 +514,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   width: 340,
                   child: TextField(
                     controller: AddressController,
-                    obscureText: true,
+                    
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white
@@ -517,7 +548,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   width: 340,
                   child: TextField(
                     controller: ReligionController,
-                    obscureText: true,
+                    
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white
@@ -551,7 +582,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   width: 340,
                   child: TextField(
                     controller: MTController,
-                    obscureText: true,
+                    
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white
