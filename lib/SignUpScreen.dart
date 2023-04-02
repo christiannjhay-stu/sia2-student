@@ -24,6 +24,15 @@ class _CreateStudentState extends State < CreateStudent > {
     final nameController = TextEditingController();
     final usernameController = TextEditingController();
 
+    final GenderController = TextEditingController();
+    final GuardianController = TextEditingController();
+    final RelationshipController = TextEditingController();
+    final MotherController = TextEditingController();
+    final FatherController = TextEditingController();
+    final AddressController = TextEditingController();
+    final ReligionController = TextEditingController();
+    final MTController = TextEditingController();
+
 
 
   void _createStudent () async {
@@ -32,6 +41,18 @@ class _CreateStudentState extends State < CreateStudent > {
     String password = passwordController.text;
     String name = nameController.text;
     String username = usernameController.text;
+
+    
+    final String gender = GenderController.text;
+    final String Guardian = GuardianController.text;
+    final String Relationship = RelationshipController.text;
+    final String Mother = MotherController.text;
+    final String Father = FatherController.text;
+    final String Address = AddressController.text;
+    final String Religion = ReligionController.text;
+    final String MT = MTController.text;
+
+
 
        FirebaseFirestore firestoreInstance = FirebaseFirestore.instance;
 
@@ -45,6 +66,8 @@ class _CreateStudentState extends State < CreateStudent > {
         "LRN": username,
         "email": email,
         "password": password,
+
+
          "section": ''
       });
 
@@ -255,7 +278,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
-                    controller: passwordController,
+                    controller: GenderController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -323,7 +346,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
-                    controller: passwordController,
+                    controller: GuardianController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -357,7 +380,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
-                    controller: passwordController,
+                    controller: RelationshipController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -391,7 +414,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
-                    controller: passwordController,
+                    controller: MotherController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -425,7 +448,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
-                    controller: passwordController,
+                    controller: FatherController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -459,7 +482,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
-                    controller: passwordController,
+                    controller: AddressController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -493,7 +516,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
-                    controller: passwordController,
+                    controller: ReligionController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -527,7 +550,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
-                    controller: passwordController,
+                    controller: MTController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
