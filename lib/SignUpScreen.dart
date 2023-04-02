@@ -241,6 +241,312 @@ class _CreateStudentState extends State < CreateStudent > {
               ],
             ),
           ),
+           Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Gender',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+           Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Birthday',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+           Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Guardian',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+           Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Relationship with guardian',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+           Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Mothers name',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+           Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Fathers name',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+           Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Address',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+           Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Religion',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+           Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Mother Tongue',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
           SizedBox(height: 12, ),
           Center(
             child: Container(
