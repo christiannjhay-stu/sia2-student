@@ -74,6 +74,11 @@ class _InformationState extends State<Information> {
                       color: Colors.white
                     ), ),
                     SizedBox(height: 10,),
+                    Text('Birthay', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['birthday'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                    SizedBox(height: 10,),
                     Text('Email', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
                     Text(data['email'], style: TextStyle(
                       color: Colors.white
@@ -101,6 +106,11 @@ class _InformationState extends State<Information> {
                      SizedBox(height: 10,),
                      Text('Fathers name', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
                     Text(data['father'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                     SizedBox(height: 10,),
+                     Text('Guardian', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['guardian'], style: TextStyle(
                       color: Colors.white
                     ), ),
                      SizedBox(height: 10,),
@@ -170,6 +180,13 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
   //EMAIL
    final _EmailController = TextEditingController();
 
+ 
+  //BDAY
+   final _BirthdayController = TextEditingController();
+
+   final _GuardianController = TextEditingController();
+
+   
 
 
 
@@ -198,6 +215,9 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
   late String _initialName;
   late String _initialSubject;
    late String _initialLRN;
+
+  
+   late String _initialGuardian;
    
 
   @override
@@ -212,7 +232,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
       if (documentSnapshot.exists) {
         Map<String, dynamic> data =
             documentSnapshot.data() as Map<String, dynamic>;
-        _nameController.text = data['name'];
+            _nameController.text = data['name'];
         _subjectController.text = data['section'];
         _GenderController.text = data['gender'];
         _MotherController.text =  data ['mother'];
@@ -221,14 +241,24 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
         _ReligionController.text = data['religion'];
         _MTController.text = data['MT'];
         _EmailController.text = data['email'];
-
-
+        _BirthdayController.text = data['birthday'];
+        _GuardianController.text = data['guardian'];
         _LRNController.text = data['LRN'];
+
+
         _initialName = data['name'];
         _initialEmail = data['email'];
         _initialSubject = data['section'];
         _initialAddress = data['address'];
         _initialReligion = data['religion'];
+        _initialGuardian = data['guardian'];
+
+    
+
+
+
+      
+         
        
       }
     });
@@ -241,9 +271,13 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
         
         String newAddress = _AddressController.text;
 
+        String newGuardian = _GuardianController.text;
+
         String newReligion = _ReligionController.text;
+
+        String newSection = _subjectController.text;
         // Only update the fields that have changed
-        if (newName != _initialName || newAddress != _initialAddress || newReligion != _initialReligion) {
+        if (newName != _initialName || newAddress != _initialAddress || newReligion != _initialReligion || newGuardian != _initialGuardian || newSection != _initialSubject) {
           await FirebaseFirestore.instance
               .collection('students')
               .doc(widget.documentId)
@@ -251,6 +285,8 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
             if (newName != _initialName) 'name': newName,
             if (newAddress != _initialAddress) 'address': newAddress,
             if (newReligion != _initialReligion) 'religion': newReligion,
+            if (newGuardian != _initialGuardian) 'guardian': newGuardian,
+            if (newSection != _initialSubject) 'section': newSection,
            
           });
         }
@@ -301,6 +337,29 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
                 style: TextStyle(
                   color: Colors.white
                 ),
+                controller: _BirthdayController,
+                decoration: InputDecoration(
+                  
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Birthday',
+                  hintStyle: TextStyle(
+                    color: Colors.white
+                  )
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
                 controller: _subjectController,
                 decoration: InputDecoration(
                   labelStyle: TextStyle(
@@ -308,12 +367,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
                   ),
                   labelText: 'Section',
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a subject';
-                  }
-                  return null;
-                },
+               
               ),
               TextFormField(
                 enabled: false,
@@ -383,6 +437,25 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
                     color: Color.fromARGB(255, 251, 183, 24)
                   ),
                   labelText: 'Father',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a subject';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _GuardianController,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Guardian',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {

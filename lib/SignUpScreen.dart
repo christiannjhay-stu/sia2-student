@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:read_data/homeScreen.dart';
 import 'package:intl/intl.dart';
+import 'package:read_data/loginScreen.dart';
 
 class CreateStudent extends StatefulWidget {
   final TextEditingController _controller = TextEditingController();
@@ -98,8 +99,15 @@ class _CreateStudentState extends State < CreateStudent > {
         "LRN": username,
         "email": email,
         "password": password,
-        "bithday":DateFormat('dd/MM/yyyy').format(_selectedDate ?? DateTime.now()),
-
+        "MT": MT,
+         "birthday":DateFormat('dd/MM/yyyy').format(_selectedDate ?? DateTime.now()),
+         "gender": gender,
+         "guardian": Guardian,
+         "relationship": Relationship,
+         "mother":Mother,
+         "father":Father,
+         "address":Address,
+         "religion":Religion,
 
          "section": ''
       });
@@ -345,6 +353,9 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextField(
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
                   controller: widget._controller,
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -626,7 +637,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   );
 
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                    return FirestoreDataScreen();
+                    return LoginScreen();
                   }));
                 },
                 style: ButtonStyle(
