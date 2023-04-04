@@ -232,7 +232,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   
-                  child: TextField(
+                  child: TextFormField(
                     controller: nameController,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -246,11 +246,19 @@ class _CreateStudentState extends State < CreateStudent > {
                         color: Colors.white,
                       )
                     ),
+                     validator: (value) {
+                  if (value == null || value.isEmpty) {
+                        return 'Please enter a name';
+                      }
+                      return null;
+                    },
                   )
                 )
               ],
             ),
           ),
+          
+         
           Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -264,7 +272,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   ),
                   height: 60,
                   width: 340,
-                  child: TextField(
+                  child: TextFormField(
                     controller: usernameController,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -278,6 +286,12 @@ class _CreateStudentState extends State < CreateStudent > {
                         color: Colors.white,
                       )
                     ),
+                    validator: (value) {
+                  if (value == null || value.isEmpty) {
+                        return 'Please enter LRN';
+                      }
+                      return null;
+                    },
                   )
                 )
               ],
@@ -296,7 +310,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   ),
                   height: 60,
                   width: 340,
-                  child: TextField(
+                  child: TextFormField(
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -310,6 +324,12 @@ class _CreateStudentState extends State < CreateStudent > {
                         color: Colors.white,
                       )
                     ),
+                    validator: (value) {
+                  if (value == null || value.isEmpty) {
+                        return 'Please enter email';
+                      }
+                      return null;
+                    },
                   )
                 )
               ],
@@ -328,7 +348,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   ),
                   height: 60,
                   width: 340,
-                  child: TextField(
+                  child: TextFormField(
                     controller: passwordController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
@@ -344,6 +364,12 @@ class _CreateStudentState extends State < CreateStudent > {
 
                       )
                     ),
+                    validator: (value) {
+                  if (value == null || value.isEmpty) {
+                        return 'Please enter password';
+                      }
+                      return null;
+                    },
                   )
                 )
               ],
@@ -396,7 +422,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   ),
                   height: 60,
                   width: 340,
-                  child: TextField(
+                  child: TextFormField(
                     controller: GradeController,
                     
                     keyboardType: TextInputType.emailAddress,
@@ -412,6 +438,12 @@ class _CreateStudentState extends State < CreateStudent > {
 
                       )
                     ),
+                    validator: (value) {
+                  if (value == null || value.isEmpty) {
+                        return 'Please enter grade';
+                      }
+                      return null;
+                    },
                   )
                 )
               ],
@@ -465,7 +497,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   ),
                   height: 60,
                   width: 340,
-                  child: TextField(
+                  child: TextFormField(  
                     controller: GuardianController,
                     
                     keyboardType: TextInputType.emailAddress,
@@ -481,6 +513,12 @@ class _CreateStudentState extends State < CreateStudent > {
 
                       )
                     ),
+                    validator: (value) {
+                  if (value == null || value.isEmpty) {
+                        return 'Please enter guardian';
+                      }
+                      return null;
+                    },
                   )
                 )
               ],
@@ -601,7 +639,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   ),
                   height: 60,
                   width: 340,
-                  child: TextField(
+                  child: TextFormField(
                     controller: AddressController,
                     
                     keyboardType: TextInputType.emailAddress,
@@ -617,6 +655,12 @@ class _CreateStudentState extends State < CreateStudent > {
 
                       )
                     ),
+                    validator: (value) {
+                  if (value == null || value.isEmpty) {
+                        return 'Please enter address';
+                      }
+                      return null;
+                    },
                   )
                 )
               ],
