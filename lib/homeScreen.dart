@@ -64,6 +64,8 @@ class FirestoreDataScreen extends StatelessWidget {
                   
                   title: Text(mapData['name'] ?? '',
                   style: TextStyle(
+
+                    fontWeight: FontWeight.bold,
                     color: Colors.white
                   ),),
                   subtitle: Column(
@@ -75,7 +77,7 @@ class FirestoreDataScreen extends StatelessWidget {
                     color: Colors.white
                   ),),
                       Text(''),
-                      Text(mapData['email'] ?? '',
+                      Text(mapData['date'] ?? '',
                   style: TextStyle(
                     color: Color.fromARGB(246, 255, 208, 0)
                   ),),
