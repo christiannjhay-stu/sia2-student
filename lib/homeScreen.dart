@@ -20,7 +20,7 @@ class FirestoreDataScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 9, 26, 47),
-        title: Text('List of clubs'),
+        title: Text('Announcements'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _collectionRef.snapshots(),

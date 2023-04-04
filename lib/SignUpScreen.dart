@@ -30,7 +30,7 @@ class _CreateStudentState extends State < CreateStudent > {
     final passwordController = TextEditingController();
     final nameController = TextEditingController();
     final usernameController = TextEditingController();
-
+    final GradeController = TextEditingController();
     final GenderController = TextEditingController();
     final GuardianController = TextEditingController();
     final RelationshipController = TextEditingController();
@@ -75,7 +75,7 @@ class _CreateStudentState extends State < CreateStudent > {
     String name = nameController.text;
     String username = usernameController.text;
 
-    
+    String Grade = GradeController.text;
     String gender = GenderController.text;
     String Guardian = GuardianController.text;
     String Relationship = RelationshipController.text;
@@ -108,7 +108,7 @@ class _CreateStudentState extends State < CreateStudent > {
          "father":Father,
          "address":Address,
          "religion":Religion,
-
+          "grade":Grade,
          "section": ''
       });
 
@@ -117,7 +117,7 @@ class _CreateStudentState extends State < CreateStudent > {
 
       // Add a document to the subcollection
       coursesCollectionRef.add({
-        'name': 'Filipino',
+        'name': 'FILIPINO',
         'Grade1': '',
         'Grade2': '',
         'Grade3': '',
@@ -132,12 +132,56 @@ class _CreateStudentState extends State < CreateStudent > {
         'Grade4': '',
       });
 
+       coursesCollectionRef.add({
+        'name': 'AP',
+        'Grade1': '',
+        'Grade2': '',
+        'Grade3': '',
+        'Grade4': '',
+      });
 
-
-   
-
-
-
+       coursesCollectionRef.add({
+        'name': 'ENGLISH',
+        'Grade1': '',
+        'Grade2': '',
+        'Grade3': '',
+        'Grade4': '',
+      });
+       coursesCollectionRef.add({
+        'name': 'MATH',
+        'Grade1': '',
+        'Grade2': '',
+        'Grade3': '',
+        'Grade4': '',
+      });
+       coursesCollectionRef.add({
+        'name': 'MAPEH',
+        'Grade1': '',
+        'Grade2': '',
+        'Grade3': '',
+        'Grade4': '',
+      });
+       coursesCollectionRef.add({
+        'name': 'ESP',
+        'Grade1': '',
+        'Grade2': '',
+        'Grade3': '',
+        'Grade4': '',
+      });
+       coursesCollectionRef.add({
+        'name': 'SCIENCE',
+        'Grade1': '',
+        'Grade2': '',
+        'Grade3': '',
+        'Grade4': '',
+      });
+       coursesCollectionRef.add({
+        'name': 'MTB',
+        'Grade1': '',
+        'Grade2': '',
+        'Grade3': '',
+        'Grade4': '',
+      });
 
   }
       
@@ -329,6 +373,40 @@ class _CreateStudentState extends State < CreateStudent > {
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(top: 8, left: 20),
                       hintText: 'Gender',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+
+                      )
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  child: TextField(
+                    controller: GradeController,
+                    
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Grade',
                       hintStyle: TextStyle(
                         color: Colors.white,
 
@@ -667,7 +745,7 @@ class _CreateStudentState extends State < CreateStudent > {
               padding: const EdgeInsets.only(top: 20),
                 child: Text(
                   textAlign: TextAlign.center,
-                  'By using Ateneo you agree to our Term of Service and\nPrivacy Policy.',
+                  'By using APJES you agree to our Term of Service and\nPrivacy Policy.',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 10,

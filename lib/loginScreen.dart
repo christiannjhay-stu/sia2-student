@@ -53,7 +53,7 @@ Widget Footer() {
     padding: const EdgeInsets.only(top: 20),
       child: Text(
         textAlign: TextAlign.center,
-        'By using Ateneo you agree to our Term of Service and\nPrivacy Policy.',
+        'By using APJES you agree to our Term of Service and\nPrivacy Policy.',
         style: TextStyle(
           color: Colors.white,
           fontSize: 10,
@@ -242,7 +242,7 @@ class _LoginScreenState extends State < LoginScreen > {
                     Padding(
                       padding: const EdgeInsets.only(top: 80.0),
                         child: Text(
-                          'Ateneo de Davao\nUniversity',
+                          'Antonio Pichon Jr.\nElementary School',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),

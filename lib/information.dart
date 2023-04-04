@@ -21,7 +21,10 @@ class _InformationState extends State<Information> {
     String? email = FirebaseAuth.instance.currentUser?.email;
     context.read<UserProvider>().setEmail(email!);
        return Scaffold(
-           appBar: AppBar(title: const Text('My Information'),),
+           appBar: AppBar(
+            backgroundColor: Color.fromARGB(255, 9, 26, 47),
+            
+            title: const Text('My Information'),),
            body: StreamBuilder<QuerySnapshot>(
             
         stream: FirebaseFirestore.instance
@@ -64,10 +67,16 @@ class _InformationState extends State<Information> {
                   
                   children: < Widget > [
                     SizedBox(height: 10,),
+                    Text('Grade', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
+                    Text(data['grade'], style: TextStyle(
+                      color: Colors.white
+                    ), ),
+                    SizedBox(height: 10,),
                     Text('Section', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
                     Text(data['section'], style: TextStyle(
                       color: Colors.white
                     ), ),
+                   
                     SizedBox(height: 10,),
                     Text('LRN', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),
                     Text(data['LRN'], style: TextStyle(
@@ -165,6 +174,8 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
   final _subjectController = TextEditingController();
   final _LRNController = TextEditingController();
 
+  final _GradeController = TextEditingController();
+
   //GENDER
   final _GenderController = TextEditingController();
   //MOTHER
@@ -194,7 +205,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
 
 
 
-
+  late String _initialGrade;
   //GENDER
    late String _initialGender;
   //MOTHER
@@ -244,7 +255,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
         _BirthdayController.text = data['birthday'];
         _GuardianController.text = data['guardian'];
         _LRNController.text = data['LRN'];
-
+        _GradeController.text = data['grade'];
 
         _initialName = data['name'];
         _initialEmail = data['email'];
@@ -301,6 +312,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 9, 26, 47),
         title: Text('Edit Information'),
       ),
       body: Padding(
@@ -351,6 +363,29 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                controller: _GradeController,
+                decoration: InputDecoration(
+                  
+                  labelStyle: TextStyle(
+                    color: Color.fromARGB(255, 251, 183, 24)
+                  ),
+                  labelText: 'Grade',
+                  hintStyle: TextStyle(
+                    color: Colors.white
+                  )
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a grade';
                   }
                   return null;
                 },
