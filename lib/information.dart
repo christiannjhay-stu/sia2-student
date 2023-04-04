@@ -585,7 +585,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
                     content: Text('Successfully Updated'), // set the message text
                     duration: Duration(seconds: 2), // set the duration for how long the message will be displayed
                   ),
-        );
+                  );
                 },
                 
                 child: Text('Update'),
