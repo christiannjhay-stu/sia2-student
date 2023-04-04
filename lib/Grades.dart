@@ -19,7 +19,59 @@ class _StudentAffiliationsState extends State<StudentAffiliations> {
         backgroundColor: Color.fromARGB(255, 9, 26, 47),
         title: Text('My Grades'),
       ),
-      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+      body: Center(
+        child: Stack(
+          children: <Widget>[
+            Row(
+              children: [
+                Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 20, left: 115),
+              child: Text(
+                '1ST',
+                style: TextStyle(color: Colors.white),
+                    
+                  ),
+                ),
+                 Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 20, left: 45),
+              child: Text(
+                '2ND',
+                style: TextStyle(color: Colors.white),
+                    
+                  ),
+                ),
+                 Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 20, left: 40),
+              child: Text(
+                '3RD',
+                style: TextStyle(color: Colors.white),
+                    
+                  ),
+                ),
+                 Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 20, left: 40),
+              child: Text(
+                '4TH',
+                style: TextStyle(color: Colors.white),
+                    
+                  ),
+                ),
+                 Padding(
+              padding: EdgeInsets.only(top: 20, bottom: 20, left: 50),
+              child: Text(
+                'REMARKS',
+                style: TextStyle(color: Colors.white),
+                    
+                  ),
+                ),
+              ],
+            ),
+           
+            
+            SizedBox(height: 50,),
+            Padding(
+              padding: EdgeInsets.only(top: 40, bottom: 20),
+              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
             .collection('students')
             .where('email', isEqualTo: widget.email)
@@ -56,14 +108,61 @@ class _StudentAffiliationsState extends State<StudentAffiliations> {
                         child: new Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
+                           
+
                             Row(
-                              
-                              children: <Widget>[
-                                 Text(Subject + '     ' + data['Grade1'] +'         '+ data['Grade2']+'         '+ data['Grade3']+'         '+ data['Grade4'],
-                                 style: TextStyle(
-                                  color: Color.fromARGB(246, 255, 208, 0)
-                                 ),),
-                              ],
+                             children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Container(
+                                    width: 100,
+                                    child: Text(
+                                      Subject,
+                                      style: TextStyle(
+                                        color: Colors.white
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 70,
+                                    child: Text(
+                                      data['Grade1'],
+                                      style: TextStyle(
+                                        color: Color.fromARGB(246, 255, 208, 0)
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 70,
+                                    child: Text(
+                                      data['Grade2'],
+                                      style: TextStyle(
+                                        color: Color.fromARGB(246, 255, 208, 0)
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 70,
+                                    child: Text(
+                                      data['Grade3'],
+                                      style: TextStyle(
+                                        color: Color.fromARGB(246, 255, 208, 0)
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 70,
+                                    child: Text(
+                                      data['Grade4'],
+                                      style: TextStyle(
+                                        color: Color.fromARGB(246, 255, 208, 0)
+                                      ),
+                                    ),
+                                  ),
+                                   
+                                ],
+                              )
+                             ],
                             ),
                             
                             
@@ -79,6 +178,12 @@ class _StudentAffiliationsState extends State<StudentAffiliations> {
           );
         },
       ),
+            )
+          ],
+        ),
+      )
+      
+      
     );
   }
 }

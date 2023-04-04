@@ -198,7 +198,7 @@ class _CreateStudentState extends State < CreateStudent > {
           Container(
             padding: const EdgeInsets.only(top: 30),
               child: Text(
-                'Ateneo de Davao\nUniversity\nCreate Student',
+                'Pre Registration',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color.fromARGB(255, 255, 255, 255),
