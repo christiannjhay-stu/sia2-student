@@ -150,6 +150,7 @@ class _StudentAffiliationsState extends State<StudentAffiliations> {
                                       ),
                                     ),
                                   ),
+                                  
                                   Container(
                                     width: 70,
                                     child: Text(
