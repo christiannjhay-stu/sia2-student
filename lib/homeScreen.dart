@@ -61,10 +61,7 @@ class FirestoreDataScreen extends StatelessWidget {
                 
                 color: Color.fromARGB(255, 9, 26, 47).withOpacity(0.2),
                   child: ListTile(
-                  leading: CircleAvatar(
-                  radius: 30,
-                  backgroundImage: NetworkImage(mapData['logo'] ?? ''),
-                ),
+                  
                   title: Text(mapData['name'] ?? '',
                   style: TextStyle(
                     color: Colors.white

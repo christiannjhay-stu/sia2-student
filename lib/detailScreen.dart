@@ -32,62 +32,17 @@ class DetailScreen extends StatelessWidget {
             Column(
               children: [
                 Padding(padding: EdgeInsets.all(20),
-                  child: Container(
-                    child: Image(image: NetworkImage(data['logo']), )
-                  ),
+                  
                 ),
                 Padding(padding: EdgeInsets.all(20),
                   child: Text(data['description'], style: TextStyle(
+
+                    fontSize: 20,
                     color: Colors.white
                   ),)
                 ),
                 SizedBox(height: 20),
-                Container(
-                      width: 340,
-                      height: 60,
-                      child: TextButton(
-                        onPressed: () async {
-                          QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('students').where('email', isEqualTo: email).get();
-                          querySnapshot.docs.forEach((doc) async {
-                          await doc.reference.collection('affiliations').add({
-                            'club': data['name'],                           
-                          });
-                        });   
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Color.fromARGB(255, 27, 100, 25), // set the background color
-                              content: Text('Successfully Joined'), // set the message text
-                              duration: Duration(seconds: 2), // set the duration for how long the message will be displayed
-                            ),
-                          ); 
-
-
-                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                            return FirestoreDataScreen();
-                          }));
-
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll < Color > (Color.fromARGB(255, 251, 183, 24)),
-                          shape: MaterialStateProperty.all < RoundedRectangleBorder > (
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-
-                            )
-                          )
-                        ),
-                        child: Text(
-                          'Join Club',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontFamily: "Noopla"
-                          ),
-
-                        ),
-                      ),
-                    ), 
+                
                 
               ],
             )
