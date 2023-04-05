@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:read_data/homeScreen.dart';
+
 
 class StudentAffiliations extends StatefulWidget {
   final String email;
@@ -93,7 +93,7 @@ class _StudentAffiliationsState extends State<StudentAffiliations> {
 
           return new ListView(
              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              String documentID = document.id;
+            
              
               Map<String, dynamic> data =
                   document.data()! as Map<String, dynamic>;

@@ -1,9 +1,10 @@
-import 'dart:html';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:read_data/detailScreen.dart';
 import 'package:read_data/test.dart';
 import 'package:read_data/user_provider.dart';
 
@@ -144,7 +145,7 @@ class _InformationState extends State<Information> {
                   color: Colors.white,),
                    onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                            return Test(studentId: documentId);
+                            return EditTeacherScreen(documentId: documentId);
                           }));
                           
                           
@@ -209,7 +210,7 @@ class _EditTeacherScreenState extends State<EditTeacherScreen> {
 
 
 
-  late String _initialGrade;
+
   //GENDER
    late String _initialGender;
   //MOTHER

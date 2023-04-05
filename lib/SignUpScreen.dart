@@ -2,7 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:read_data/homeScreen.dart';
+
 import 'package:intl/intl.dart';
 import 'package:read_data/loginScreen.dart';
 
@@ -24,10 +24,11 @@ class _CreateStudentState extends State < CreateStudent > {
     DateTime? _selectedDate;
 
 
-    
+    final EController = TextEditingController();
+    final PController = TextEditingController();
 
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+
+  
     final nameController = TextEditingController();
     final usernameController = TextEditingController();
     final GradeController = TextEditingController();
@@ -70,8 +71,10 @@ class _CreateStudentState extends State < CreateStudent > {
 
   void _createStudent () async {
 
-    String email = emailController.text;
-    String password = passwordController.text;
+    
+
+    String email = EController.text;
+    String password = PController.text;
     String name = nameController.text;
     String username = usernameController.text;
 
@@ -86,102 +89,71 @@ class _CreateStudentState extends State < CreateStudent > {
     String MT = MTController.text;
 
 
+    try {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-       FirebaseFirestore firestoreInstance = FirebaseFirestore.instance;
+                // Generate a student ID
+                String studentId = "student-${DateTime.now().millisecondsSinceEpoch}";
 
-      // Create a collection reference
-      CollectionReference teachersCollectionRef = firestoreInstance.collection('students');
+                // Create a new student document with the generated ID
+                DocumentReference studentRef = firestore.collection('students').doc(studentId);
 
-      // Create a document and add it to the collection
-      DocumentReference newTeacherDocRef = teachersCollectionRef.doc();
-      newTeacherDocRef.set({
-        "name": name,
-        "LRN": username,
-        "email": email,
-        "password": password,
-        "MT": MT,
-         "birthday":DateFormat('dd/MM/yyyy').format(_selectedDate ?? DateTime.now()),
-         "gender": gender,
-         "guardian": Guardian,
-         "relationship": Relationship,
-         "mother":Mother,
-         "father":Father,
-         "address":Address,
-         "religion":Religion,
-          "grade":Grade,
-         "section": ''
-      });
+            // Set the student's data
+            studentRef.set({
+              "name": name,
+              "LRN": username,
+              "email": email,
+              "password": password,
+              "MT": MT,
+              "birthday":DateFormat('dd/MM/yyyy').format(_selectedDate ?? DateTime.now()),
+              "gender": gender,
+              "guardian": Guardian,
+              "relationship": Relationship,
+              "mother":Mother,
+              "father":Father,
+              "address":Address,
+              "religion":Religion,
+              "grade":Grade,
+              "section": '',
+              "status": '',
+              "lacking documents":''
+            });
 
-      // Create a subcollection reference for the new document
-      CollectionReference coursesCollectionRef = newTeacherDocRef.collection('affiliations');
+            // Add subcollections for each subject
+            CollectionReference subjectsRef = studentRef.collection('Subjects');
+            List<String> subjects = ['MATH', 'SCIENCE', 'ENGLISH', 'MTB', 'MAPEH', 'ESP', 'AP', 'TLE', 'FILIPINO'];
+            for (String subject in subjects) {
+              print(subject);
+              // Use the subject name as the subcollection document ID
+              DocumentReference subjectRef = subjectsRef.doc();
 
-      // Add a document to the subcollection
-      coursesCollectionRef.add({
-        'name': 'FILIPINO',
-        'Grade1': '',
-        'Grade2': '',
-        'Grade3': '',
-        'Grade4': '',
-      });
+              
+              
+              // Set the subject's data
+              subjectRef.set({
+                'name': subject,
+                'Year': 2023,
+              });
 
-      coursesCollectionRef.add({
-        'name': 'TLE',
-        'Grade1': '',
-        'Grade2': '',
-        'Grade3': '',
-        'Grade4': '',
-      });
-
-       coursesCollectionRef.add({
-        'name': 'AP',
-        'Grade1': '',
-        'Grade2': '',
-        'Grade3': '',
-        'Grade4': '',
-      });
-
-       coursesCollectionRef.add({
-        'name': 'ENGLISH',
-        'Grade1': '',
-        'Grade2': '',
-        'Grade3': '',
-        'Grade4': '',
-      });
-       coursesCollectionRef.add({
-        'name': 'MATH',
-        'Grade1': '',
-        'Grade2': '',
-        'Grade3': '',
-        'Grade4': '',
-      });
-       coursesCollectionRef.add({
-        'name': 'MAPEH',
-        'Grade1': '',
-        'Grade2': '',
-        'Grade3': '',
-        'Grade4': '',
-      });
-       coursesCollectionRef.add({
-        'name': 'ESP',
-        'Grade1': '',
-        'Grade2': '',
-        'Grade3': '',
-        'Grade4': '',
-      });
-       coursesCollectionRef.add({
-        'name': 'SCIENCE',
-        'Grade1': '',
-        'Grade2': '',
-        'Grade3': '',
-        'Grade4': '',
-      });
-       coursesCollectionRef.add({
-        'name': 'MTB',
-        'Grade1': '',
-        'Grade2': '',
-        'Grade3': '',
-        'Grade4': '',
-      });
+              // Add a new grade document to the subject's 'Grades' collection with a generated ID
+              CollectionReference gradesRef = subjectRef.collection('Grades');
+              DocumentReference gradeRef = gradesRef.doc();
+               
+              // Set the grade's data
+              gradeRef.set({
+                'Grade1': 0,
+                'Grade2': 0,
+                'Grade3': 0,
+                'Grade4': 0,
+              });
+            }
+           
+              
+           
+            print('Grade added successfully');
+          } catch (e) {
+            print('Error adding grade: $e');
+          }
 
   }
       
@@ -246,12 +218,7 @@ class _CreateStudentState extends State < CreateStudent > {
                         color: Colors.white,
                       )
                     ),
-                     validator: (value) {
-                  if (value == null || value.isEmpty) {
-                        return 'Please enter a name';
-                      }
-                      return null;
-                    },
+                     
                   )
                 )
               ],
@@ -286,12 +253,7 @@ class _CreateStudentState extends State < CreateStudent > {
                         color: Colors.white,
                       )
                     ),
-                    validator: (value) {
-                  if (value == null || value.isEmpty) {
-                        return 'Please enter LRN';
-                      }
-                      return null;
-                    },
+                   
                   )
                 )
               ],
@@ -311,7 +273,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextFormField(
-                    controller: emailController,
+                    controller: EController,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
                       color: Colors.white
@@ -324,12 +286,7 @@ class _CreateStudentState extends State < CreateStudent > {
                         color: Colors.white,
                       )
                     ),
-                    validator: (value) {
-                  if (value == null || value.isEmpty) {
-                        return 'Please enter email';
-                      }
-                      return null;
-                    },
+                  
                   )
                 )
               ],
@@ -349,7 +306,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   height: 60,
                   width: 340,
                   child: TextFormField(
-                    controller: passwordController,
+                    controller: PController,
                     obscureText: true,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(
@@ -364,12 +321,7 @@ class _CreateStudentState extends State < CreateStudent > {
 
                       )
                     ),
-                    validator: (value) {
-                  if (value == null || value.isEmpty) {
-                        return 'Please enter password';
-                      }
-                      return null;
-                    },
+                   
                   )
                 )
               ],
@@ -513,12 +465,7 @@ class _CreateStudentState extends State < CreateStudent > {
 
                       )
                     ),
-                    validator: (value) {
-                  if (value == null || value.isEmpty) {
-                        return 'Please enter guardian';
-                      }
-                      return null;
-                    },
+                   
                   )
                 )
               ],
@@ -739,15 +686,14 @@ class _CreateStudentState extends State < CreateStudent > {
             child: Container(
               width: 340,
               height: 60,
-              child: TextButton(
-                onPressed: () {
+              child: ElevatedButton(
+                onPressed: () async{
 
                   _createStudent();
 
                    FirebaseAuth.instance.createUserWithEmailAndPassword(
-                            email: emailController.text.trim(), 
-                            password: passwordController.text.trim()
-                            
+                            email: EController.text.trim(), 
+                            password: PController.text.trim()   
                   );
 
                   ScaffoldMessenger.of(context).showSnackBar(
