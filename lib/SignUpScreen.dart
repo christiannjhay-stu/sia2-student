@@ -132,7 +132,7 @@ class _CreateStudentState extends State < CreateStudent > {
               // Set the subject's data
               subjectRef.set({
                 'name': subject,
-                'Year': 2023,
+                'Year': '2023',
               });
 
               // Add a new grade document to the subject's 'Grades' collection with a generated ID
@@ -141,10 +141,10 @@ class _CreateStudentState extends State < CreateStudent > {
                
               // Set the grade's data
               gradeRef.set({
-                'Grade1': 0,
-                'Grade2': 0,
-                'Grade3': 0,
-                'Grade4': 0,
+                'Grade1': '',
+                'Grade2': '',
+                'Grade3': '',
+                'Grade4': '',
               });
             }
            

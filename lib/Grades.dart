@@ -1,190 +1,162 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
+class MyHomePage extends StatelessWidget {
+  final String studentId;
 
-class StudentAffiliations extends StatefulWidget {
-  final String email;
+  const MyHomePage({Key? key, required this.studentId}) : super(key: key);
 
-  StudentAffiliations({required this.email});
-
-  @override
-  _StudentAffiliationsState createState() => _StudentAffiliationsState();
-}
-
-class _StudentAffiliationsState extends State<StudentAffiliations> {
   @override
   Widget build(BuildContext context) {
+    Query<Map<String, dynamic>> subjectsRef =
+        FirebaseFirestore.instance
+            .collection('students')
+            .doc(studentId)
+            .collection('Subjects')
+            .where('Year', isEqualTo: '2023');
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 9, 26, 47),
-        title: Text('My Grades'),
+        title: Text('Grades'),
       ),
-      body: Center(
-        child: Stack(
-          children: <Widget>[
-            Row(
-              children: [
-                Padding(
-              padding: EdgeInsets.only(top: 20, bottom: 20, left: 115),
-              child: Text(
-                '1ST',
-                style: TextStyle(color: Colors.white),
-                    
-                  ),
-                ),
-                 Padding(
-              padding: EdgeInsets.only(top: 20, bottom: 20, left: 45),
-              child: Text(
-                '2ND',
-                style: TextStyle(color: Colors.white),
-                    
-                  ),
-                ),
-                 Padding(
-              padding: EdgeInsets.only(top: 20, bottom: 20, left: 40),
-              child: Text(
-                '3RD',
-                style: TextStyle(color: Colors.white),
-                    
-                  ),
-                ),
-                 Padding(
-              padding: EdgeInsets.only(top: 20, bottom: 20, left: 40),
-              child: Text(
-                '4TH',
-                style: TextStyle(color: Colors.white),
-                    
-                  ),
-                ),
-                 Padding(
-              padding: EdgeInsets.only(top: 20, bottom: 20, left: 50),
-              child: Text(
-                'REMARKS',
-                style: TextStyle(color: Colors.white),
-                    
-                  ),
-                ),
-              ],
-            ),
-           
-            
-            SizedBox(height: 50,),
-            Padding(
-              padding: EdgeInsets.only(top: 40, bottom: 20),
-              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: FirebaseFirestore.instance
-            .collection('students')
-            .where('email', isEqualTo: widget.email)
-            .snapshots()
-            .asyncMap((QuerySnapshot<Map<String, dynamic>> query) async {
-          return await query.docs.first.reference
-              .collection('affiliations')
-              .get();
-        }),
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: subjectsRef.snapshots(),
         builder: (BuildContext context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return Text('Error: ${snapshot.error}');
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return Text('Loading...');
           }
 
-          return new ListView(
-             children: snapshot.data!.docs.map((DocumentSnapshot document) {
-            
-             
-              Map<String, dynamic> data =
-                  document.data()! as Map<String, dynamic>;
-                  String Subject = data['name'];
-              return new Card(
-                color: Color.fromARGB(255, 9, 26, 47).withOpacity(0.2),
-                child: new Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: new Row(
-                    children: <Widget>[
-                      new Expanded(
-                        child: new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                           
+          if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
+            return Text('No subjects found for this student.');
+          }
 
-                            Row(
-                             children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    width: 100,
-                                    child: Text(
-                                      Subject,
-                                      style: TextStyle(
-                                        color: Colors.white
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 70,
-                                    child: Text(
-                                      data['Grade1'],
-                                      style: TextStyle(
-                                        color: Color.fromARGB(246, 255, 208, 0)
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 70,
-                                    child: Text(
-                                      data['Grade2'],
-                                      style: TextStyle(
-                                        color: Color.fromARGB(246, 255, 208, 0)
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 70,
-                                    child: Text(
-                                      data['Grade3'],
-                                      style: TextStyle(
-                                        color: Color.fromARGB(246, 255, 208, 0)
-                                      ),
-                                    ),
-                                  ),
-                                  
-                                  Container(
-                                    width: 70,
-                                    child: Text(
-                                      data['Grade4'],
-                                      style: TextStyle(
-                                        color: Color.fromARGB(246, 255, 208, 0)
-                                      ),
-                                    ),
-                                  ),
-                                   
-                                ],
-                              )
-                             ],
-                            ),
-                            
-                            
-                          ],
-                        ),
+          return ListView.builder(
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (BuildContext context, int index) {
+              QueryDocumentSnapshot<Map<String, dynamic>> subjectDoc =
+                  snapshot.data!.docs[index];
+
+              return Card(
+                margin: EdgeInsets.all(10),
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        subjectDoc['name'],
+                        style: TextStyle(fontSize: 18),
                       ),
-                     
+                      SizedBox(height: 10),
+                      StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                        stream: subjectDoc.reference
+                            .collection('Grades')
+                            .snapshots(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                                gradesSnapshot) {
+                          if (gradesSnapshot.hasError) {
+                            return Text('Error: ${gradesSnapshot.error}');
+                          }
+
+                          if (gradesSnapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Text('Loading...');
+                          }
+
+                          if (gradesSnapshot.data == null ||
+                              gradesSnapshot.data!.docs.isEmpty) {
+                            return Text('No grades found for this subject.');
+                          }
+
+                          List<String> gradesList = gradesSnapshot.data!.docs
+                              .map((QueryDocumentSnapshot<Map<String, dynamic>> gradeDoc) =>
+                                  gradeDoc['Grade1'] as String,
+                                  )
+                              .toList();
+
+                               List<String> gradesList1 = gradesSnapshot.data!.docs
+                              .map((QueryDocumentSnapshot<Map<String, dynamic>> gradeDoc) =>
+                                  gradeDoc['Grade2'] as String,
+                                  )
+                              .toList();
+                                List<String> gradesList2 = gradesSnapshot.data!.docs
+                              .map((QueryDocumentSnapshot<Map<String, dynamic>> gradeDoc) =>
+                                  gradeDoc['Grade3'] as String,
+                                  )
+                              .toList();
+                                List<String> gradesList3 = gradesSnapshot.data!.docs
+                              .map((QueryDocumentSnapshot<Map<String, dynamic>> gradeDoc) =>
+                                  gradeDoc['Grade4'] as String,
+                                  )
+                              .toList();
+
+                          
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Grades:',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 5),
+                              ...gradesList.map(
+                                (grade) => Text(
+                                  grade,
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ),
+                              Text(
+                                'Grades:',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 5),
+                              ...gradesList1.map(
+                                (grade) => Text(
+                                  grade,
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ),
+                              Text(
+                                'Grades:',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 5),
+                              ...gradesList2.map(
+                                (grade) => Text(
+                                  grade,
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ),
+                              Text(
+                                'Grades:',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 5),
+                              ...gradesList3.map(
+                                (grade) => Text(
+                                  grade,
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ),
+                             
+                            ],
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
               );
-            }).toList(),
+            },
           );
         },
       ),
-            )
-          ],
-        ),
-      )
-      
-      
     );
   }
 }

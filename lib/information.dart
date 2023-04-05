@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:read_data/TestFilterSubjects.dart';
 import 'package:read_data/detailScreen.dart';
 import 'package:read_data/test.dart';
 import 'package:read_data/user_provider.dart';
@@ -144,8 +145,10 @@ class _InformationState extends State<Information> {
                   icon: Icon(Icons.edit,
                   color: Colors.white,),
                    onPressed: () {
+                    print(documentId);
                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
                             return EditTeacherScreen(documentId: documentId);
+                           
                           }));
                           
                           

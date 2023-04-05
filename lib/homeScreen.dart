@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:read_data/Grades.dart';
+import 'package:read_data/TestGrades.dart';
 import 'package:read_data/detailScreen.dart';
 import 'package:read_data/information.dart';
 import 'package:read_data/loginScreen.dart';
@@ -10,13 +11,37 @@ import 'package:read_data/user_provider.dart';
 
 
 
+
+
+
 class FirestoreDataScreen extends StatelessWidget {
   final CollectionReference _collectionRef = FirebaseFirestore.instance.collection('clubs');
-
+  
+  
+      
+  
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+   
+    
+
     String? email = FirebaseAuth.instance.currentUser?.email;
     context.read<UserProvider>().setEmail(email!);
+    
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    String loggedInEmail = email;
+
+    // ignore: unused_element
+    Future<String> getStudentDocumentId() async {
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await firestore.collection('students').where('email', isEqualTo: loggedInEmail).get();
+      if (querySnapshot.docs.isNotEmpty) {
+        return querySnapshot.docs.first.id;
+      } else {
+        return '';
+      }
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 9, 26, 47),
@@ -94,6 +119,7 @@ class FirestoreDataScreen extends StatelessWidget {
       ),
       
       drawer: Drawer(
+        
         backgroundColor: Color.fromARGB(255, 9, 26, 47),
         child: ListView(
           // Important: Remove any padding from the ListView.
@@ -138,10 +164,15 @@ class FirestoreDataScreen extends StatelessWidget {
                 ),
                 leading: Icon(Icons.work),
                 title: const Text('My Grades'),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                            return StudentAffiliations(email: email);
-                          }));
+                  onTap: () async {
+                    
+                    String currentUserEmail = email;
+                    String parentDocumentId = await getStudentDocumentId();
+                    print('$parentDocumentId');
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => MyHomePage(studentId: parentDocumentId)),
+                              );
                   },
                   textColor: Colors.white,
                   iconColor: Colors.white,

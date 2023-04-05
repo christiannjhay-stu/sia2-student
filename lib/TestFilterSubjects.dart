@@ -1,9 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
-
-
 class MyHomePage extends StatelessWidget {
   final String studentId;
 
@@ -16,7 +13,7 @@ class MyHomePage extends StatelessWidget {
             .collection('students')
             .doc(studentId)
             .collection('Subjects')
-            .where('Year', isEqualTo: '2024');
+            .where('Year', isEqualTo: '2023');
 
     return Scaffold(
       appBar: AppBar(
@@ -37,7 +34,6 @@ class MyHomePage extends StatelessWidget {
           if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
             return Text('No subjects found for this student.');
           }
-          
 
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
