@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:read_data/test.dart';
 import 'package:read_data/user_provider.dart';
 
 class Information extends StatefulWidget {
@@ -53,6 +54,9 @@ class _InformationState extends State<Information> {
               String documentId = document.id;
               Map<String, dynamic> data = document.data() as Map<String, dynamic>;
              
+              
+
+
               return ListTile(
                 title: Center(
                   child:Text(data['name'],
@@ -140,7 +144,7 @@ class _InformationState extends State<Information> {
                   color: Colors.white,),
                    onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-                            return EditTeacherScreen(documentId: documentId);
+                            return Test(studentId: documentId);
                           }));
                           
                           
