@@ -121,7 +121,7 @@ class _CreateStudentState extends State < CreateStudent > {
                 "religion":Religion,
                 "grade":Grade,
                 "section": '',
-                "status": 'NOT ENROLLED',
+                "status": 'Not Enrolled',
                 "lacking documents":''
               });
 
