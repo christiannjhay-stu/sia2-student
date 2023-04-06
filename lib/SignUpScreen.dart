@@ -71,7 +71,12 @@ class _CreateStudentState extends State < CreateStudent > {
 
   void _createStudent () async {
 
-    
+    final CollectionReference collectionRef = FirebaseFirestore.instance.collection('schoolyear');
+    final DocumentSnapshot documentSnapshot = await collectionRef.doc('SchoolYear').get();
+
+    final String Year = documentSnapshot.get('yearStarted');
+
+
 
     String email = EController.text;
     String password = PController.text;
@@ -116,7 +121,7 @@ class _CreateStudentState extends State < CreateStudent > {
                 "religion":Religion,
                 "grade":Grade,
                 "section": '',
-                "status": '',
+                "status": 'Not Enrolled',
                 "lacking documents":''
               });
 
@@ -130,7 +135,7 @@ class _CreateStudentState extends State < CreateStudent > {
                 // Set the subject's data
                 batch.set(subjectRef, {
                   'name': subject,
-                  'Year': '2023',
+                  'Year': Year,
                 });
 
                 // Add a new grade document to the subject's 'Grades' collection with a generated ID
@@ -143,6 +148,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   'Grade2': '',
                   'Grade3': '',
                   'Grade4': '',
+                  'Year': Year
                 });
               }
 
