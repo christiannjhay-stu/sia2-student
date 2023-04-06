@@ -90,70 +90,72 @@ class _CreateStudentState extends State < CreateStudent > {
 
 
     try {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-                // Generate a student ID
-                String studentId = "student-${DateTime.now().millisecondsSinceEpoch}";
+            FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-                // Create a new student document with the generated ID
-                DocumentReference studentRef = firestore.collection('students').doc(studentId);
+                      // Create a new student document with the generated ID
+              DocumentReference studentRef = firestore.collection('students').doc();
 
-            // Set the student's data
-            studentRef.set({
-              "name": name,
-              "LRN": username,
-              "email": email,
-              "password": password,
-              "MT": MT,
-              "birthday":DateFormat('dd/MM/yyyy').format(_selectedDate ?? DateTime.now()),
-              "gender": gender,
-              "guardian": Guardian,
-              "relationship": Relationship,
-              "mother":Mother,
-              "father":Father,
-              "address":Address,
-              "religion":Religion,
-              "grade":Grade,
-              "section": '',
-              "status": '',
-              "lacking documents":''
-            });
+              // Create a batch object
+              WriteBatch batch = firestore.batch();
 
-            // Add subcollections for each subject
-            CollectionReference subjectsRef = studentRef.collection('Subjects');
-            List<String> subjects = ['MATH', 'SCIENCE', 'ENGLISH', 'MTB', 'MAPEH', 'ESP', 'AP', 'TLE', 'FILIPINO'];
-            for (String subject in subjects) {
-              print(subject);
-              // Use the subject name as the subcollection document ID
-              DocumentReference subjectRef = subjectsRef.doc();
-
-              
-              
-              // Set the subject's data
-              subjectRef.set({
-                'name': subject,
-                'Year': '2023',
+              // Set the student's data
+              batch.set(studentRef, {
+                "name": name,
+                "LRN": username,
+                "email": email,
+                "password": password,
+                "MT": MT,
+                "birthday":DateFormat('dd/MM/yyyy').format(_selectedDate ?? DateTime.now()),
+                "gender": gender,
+                "guardian": Guardian,
+                "relationship": Relationship,
+                "mother":Mother,
+                "father":Father,
+                "address":Address,
+                "religion":Religion,
+                "grade":Grade,
+                "section": '',
+                "status": '',
+                "lacking documents":''
               });
 
-              // Add a new grade document to the subject's 'Grades' collection with a generated ID
-              CollectionReference gradesRef = subjectRef.collection('Grades');
-              DocumentReference gradeRef = gradesRef.doc();
-               
-              // Set the grade's data
-              gradeRef.set({
-                'Grade1': '',
-                'Grade2': '',
-                'Grade3': '',
-                'Grade4': '',
-              });
-            }
-           
-              
-           
-            print('Grade added successfully');
-          } catch (e) {
-            print('Error adding grade: $e');
-          }
+              // Add subcollections for each subject
+              CollectionReference subjectsRef = studentRef.collection('Subjects');
+              List<String> subjects = ['MATH', 'SCIENCE', 'ENGLISH', 'MTB', 'MAPEH', 'ESP', 'AP', 'TLE', 'FILIPINO'];
+              for (String subject in subjects) {
+                // Use the subject name as the subcollection document ID
+                DocumentReference subjectRef = subjectsRef.doc();
+
+                // Set the subject's data
+                batch.set(subjectRef, {
+                  'name': subject,
+                  'Year': '2023',
+                });
+
+                // Add a new grade document to the subject's 'Grades' collection with a generated ID
+                CollectionReference gradesRef = subjectRef.collection('Grades');
+                DocumentReference gradeRef = gradesRef.doc();
+                
+                // Set the grade's data
+                batch.set(gradeRef, {
+                  'Grade1': '',
+                  'Grade2': '',
+                  'Grade3': '',
+                  'Grade4': '',
+                });
+              }
+
+              // Commit the batch
+              batch.commit().then((value) => print('Grade added successfully'))
+                        .catchError((error) => print('Error adding grade: $error'));
+
+
+
+
+    } catch (e) {
+      print('Error adding grade: $e');
+    }
 
   }
       

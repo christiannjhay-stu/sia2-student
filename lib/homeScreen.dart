@@ -166,7 +166,7 @@ class FirestoreDataScreen extends StatelessWidget {
                 title: const Text('My Grades'),
                   onTap: () async {
                     
-                    String currentUserEmail = email;
+                   
                     String parentDocumentId = await getStudentDocumentId();
                     print('$parentDocumentId');
                     Navigator.push(
