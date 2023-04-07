@@ -148,6 +148,7 @@ class _CreateStudentState extends State < CreateStudent > {
                   'Grade2': '',
                   'Grade3': '',
                   'Grade4': '',
+                  'Final': '',
                   'Year': Year
                 });
               }
