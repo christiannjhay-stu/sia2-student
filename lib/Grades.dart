@@ -30,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 9, 26, 47),
         title: Text('Grades'),
       ),
       body: Column(
@@ -40,8 +41,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               children: <Widget>[
                 Container(
-                    child: Text('Year'),
+                  padding: EdgeInsets.only(left: 5),
+                    child: Text('Year',
+                    style: TextStyle(color: Colors.white, fontSize: 16),),
                 ),
+                SizedBox(width: 5,),
                  DropdownButton<String>(
                   value: _selectedYear,
                   items: <String>['2023', '2024', '2025', '2026']
@@ -59,8 +63,28 @@ class _MyHomePageState extends State<MyHomePage> {
                       _selectedYear = newValue!;
                     });
                   },
+                  dropdownColor: Colors.grey,
                 ),
-                
+                SizedBox(width: 37,),
+                Container(
+                  child: Text('1ST', style: TextStyle(color: Colors.white),),
+                ),
+                   SizedBox(width: 37,),
+                Container(
+                  child: Text('2ND',style: TextStyle(color: Colors.white)),
+                ),
+                 SizedBox(width: 37,),
+                Container(
+                  child: Text('3RD',style: TextStyle(color: Colors.white)),
+                ),
+                 SizedBox(width: 37,),
+                    Container(
+                  child: Text('4TH', style: TextStyle(color: Colors.white)),
+                ),
+                SizedBox(width: 37,),
+                Container(
+                  child: Text('FINAL',style: TextStyle(color: Colors.white)),
+                )
               ],
               
             ),
@@ -94,15 +118,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         snapshot.data!.docs[index];
 
                     return Card(
-                      margin: EdgeInsets.all(10),
+                      shape: Border.all(width: 1),
+                      color: Color.fromARGB(255, 36, 59, 78),
+                      margin: EdgeInsets.only(left: 10, right: 10),
                       child: Padding(
                         padding: EdgeInsets.all(10),
                         child: Row(
+                          
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               subjectDoc['name'],
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 18, color: Colors.white),
                             ),
                             SizedBox(height: 10),
                             StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -154,19 +181,22 @@ class _MyHomePageState extends State<MyHomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             
                             children: [
+                              SizedBox(width: 50,),
                              Container(
-                                padding: EdgeInsets.only(left: 20),
+                                
+                                padding: EdgeInsets.only(left: 30),
                                 child: Stack(
                                   children: <Widget>[
                                     SizedBox(height: 5),
                               ...gradesList.map(
                                 (grade) => Text(
                                   grade,
-                                  style: TextStyle(fontSize: 14),
+                                  style: TextStyle(fontSize: 16, color: Colors.white),
                                 ),
                               ),
                                 ],)
                               ),
+                                  SizedBox(width: 25,),
                               Container(
                                 padding: EdgeInsets.only(left: 20),
                                 child: Stack(
@@ -175,24 +205,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               ...gradesList1.map(
                                 (grade) => Text(
                                   grade,
-                                  style: TextStyle(fontSize: 14),
+                                  style: TextStyle(fontSize: 16, color: Colors.white),
                                 ),
                               ),
                                 ],)
                               ),
+                                 SizedBox(width: 30,),
                               Container(
-                                padding: EdgeInsets.only(left: 20),
+                                padding: EdgeInsets.only(left: 15),
                                 child: Stack(
                                   children: <Widget>[
                                     SizedBox(height: 5),
                               ...gradesList2.map(
                                 (grade) => Text(
                                   grade,
-                                  style: TextStyle(fontSize: 14),
+                                  style: TextStyle(fontSize: 16, color: Colors.white),
                                 ),
                               ),
                                 ],)
                               ),
+                                SizedBox(width: 25,),
                               Container(
                                 padding: EdgeInsets.only(left: 20),
                                 child: Stack(
@@ -201,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ...gradesList3.map(
                                 (grade) => Text(
                                   grade,
-                                  style: TextStyle(fontSize: 14),
+                                  style: TextStyle(fontSize: 16, color: Colors.white),
                                 ),
                               ),
                                 ],)
