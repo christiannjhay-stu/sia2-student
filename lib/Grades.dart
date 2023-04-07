@@ -127,10 +127,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            Container(
+                              width: 100,
+                             
+                              child: Text(
                               subjectDoc['name'],
                               style: TextStyle(fontSize: 18, color: Colors.white),
                             ),
+                            ),
+                            
                             SizedBox(height: 10),
                             StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                               stream: subjectDoc.reference
@@ -181,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             
                             children: [
-                              SizedBox(width: 50,),
+                              SizedBox(width: 13,),
                              Container(
                                 
                                 padding: EdgeInsets.only(left: 30),
