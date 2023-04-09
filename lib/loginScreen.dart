@@ -226,9 +226,13 @@ class _LoginScreenState extends State < LoginScreen > {
   @override
 
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: AnnotatedRegion < SystemUiOverlayStyle > (
-        value: SystemUiOverlayStyle.light,
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: size.width * 0.10, // 5% of the width
+          vertical: size.height * 0.10, // 2% of the height
+        ),
         child: GestureDetector(
           child: Stack(
             children: < Widget > [
