@@ -60,7 +60,9 @@ class _InformationState extends State<Information> {
 
 
               return ListTile(
-                title: Center(
+                
+                title: Container(
+                  
                   child:Text(data['name'],
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -70,7 +72,7 @@ class _InformationState extends State<Information> {
                 ),
                 
                 subtitle: Column(
-                  
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: < Widget > [
                     SizedBox(height: 10,),
                     Text('Grade', style: TextStyle(color: Color.fromARGB(255, 251, 183, 24), fontWeight: FontWeight.bold ),),

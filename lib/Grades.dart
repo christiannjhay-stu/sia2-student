@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Grades'),
       ),
       body: Column(
-        
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
             padding: EdgeInsets.only(top: 10,left: 20),
@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: EdgeInsets.all(10),
                         child: Row(
                           
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
                               width: 100,
@@ -188,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           
                           return Row(
                             
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             
                             children: [
                               SizedBox(width: 13,),

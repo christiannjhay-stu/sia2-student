@@ -25,8 +25,9 @@ class DetailScreen extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 9, 26, 47),
         title: Text(data['name']),
       ),
-      body: Container(
-        child: Center(
+      body: ListView(
+        children: [
+          Center(
           child: Stack(
           children: < Widget > [
             Column(
@@ -49,9 +50,7 @@ class DetailScreen extends StatelessWidget {
           ],
         ),
         )
-        
-        
-        
+        ],
       )
     );
   }

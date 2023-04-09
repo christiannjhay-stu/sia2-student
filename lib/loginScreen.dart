@@ -239,7 +239,9 @@ class _LoginScreenState extends State < LoginScreen > {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: < Widget > [
-                    Padding(
+                    Flexible(child: ListView(
+                      children:<Widget> [
+                         Padding(
                       padding: const EdgeInsets.only(top: 80.0),
                         child: Text(
                           'Antonio Pichon Jr.\nElementary School',
@@ -254,9 +256,11 @@ class _LoginScreenState extends State < LoginScreen > {
                         
                     ), 
                     SizedBox(height: 25),
-                    Logo(),
+                      Logo(),
+                      
                     SizedBox(height: 50),
-                    Column(
+                    Center(
+                      child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: < Widget > [
                         SizedBox(height: 10),
@@ -286,7 +290,9 @@ class _LoginScreenState extends State < LoginScreen > {
                         )
                       ],
                     ),
-                    Column(
+                    ),
+                    Center(
+                      child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: < Widget > [
                         SizedBox(height: 10),
@@ -318,8 +324,11 @@ class _LoginScreenState extends State < LoginScreen > {
                         )
                       ],
                     ),
+                    ),
+                    
                     buildForgotPassBtn(),
-                    Container(
+                    Center(
+                      child: Container(
                       width: 340,
                       height: 60,
                       child: TextButton(
@@ -346,6 +355,8 @@ class _LoginScreenState extends State < LoginScreen > {
                         ),
                       ),
                     ), 
+                    ),
+                    
                     SizedBox(height: 2),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -381,6 +392,21 @@ class _LoginScreenState extends State < LoginScreen > {
                       ],
                     ),
                     Footer(),
+
+
+
+
+
+
+
+
+
+
+                      ],
+                    ))
+                   
+                    
+                  
                   ],
                 ),
               )
