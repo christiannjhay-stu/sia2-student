@@ -230,8 +230,8 @@ class _LoginScreenState extends State < LoginScreen > {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.05, // 5% of the width
-          vertical: size.height * 0.05, // 2% of the height
+          horizontal: size.width * 0.05, 
+          vertical: size.height * 0.05, 
         ),
         child: GestureDetector(
           child: Stack(
