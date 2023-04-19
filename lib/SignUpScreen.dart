@@ -821,7 +821,7 @@ class _CreateStudentState extends State < CreateStudent > {
                
 
                   if(AddressController.text.isEmpty || EController.text.isEmpty || PController.text.isEmpty || nameController.text.isEmpty || nameController1.text.isEmpty 
-                  || nameController2.text.isEmpty || nameController3.text.isEmpty || usernameController.text.isEmpty || GradeController.text.isEmpty || GenderController.text.isEmpty ||
+                  || nameController2.text.isEmpty || usernameController.text.isEmpty || GradeController.text.isEmpty || GenderController.text.isEmpty ||
                   GuardianController.text.isEmpty || RelationshipController.text.isEmpty || MotherController.text.isEmpty || FatherController.text.isEmpty || ReligionController.text.isEmpty||
                    MTController.text.isEmpty){
 
