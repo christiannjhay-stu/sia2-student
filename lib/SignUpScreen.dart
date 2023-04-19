@@ -815,24 +815,69 @@ class _CreateStudentState extends State < CreateStudent > {
               child: ElevatedButton(
                 onPressed: () async{
 
-                  _createStudent();
 
-                   FirebaseAuth.instance.createUserWithEmailAndPassword(
-                            email: EController.text.trim(), 
-                            password: PController.text.trim()   
-                  );
+                  
+                   
+               
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: Color.fromARGB(255, 27, 100, 25), // set the background color
-                      content: Text('Account Successfully Created'), // set the message text
-                      duration: Duration(seconds: 2), // set the duration for how long the message will be displayed
-                    ),
-                  );
+                  if(AddressController.text.isEmpty || EController.text.isEmpty){
 
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Color.fromARGB(255, 255, 51, 0), // set the background color
+                            content: Text('Please Complete All Fields'), // set the message text
+                            duration: Duration(seconds: 2), // set the duration for how long the message will be displayed
+                          ),
+                        );
+
+                    } else if (AddressController.text.isNotEmpty) {
+
+                      try {
+                        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                          email: EController.text.trim(), 
+                          password: PController.text.trim()   
+                        );
+                        _createStudent();
+                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
                     return LoginScreen();
-                  }));
+                       }));
+                        // User created successfully, show success message
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Color.fromARGB(255, 27, 100, 25), // set the background color
+                            content: Text('Account Successfully Created'), // set the message text
+                            duration: Duration(seconds: 2), // set the duration for how long the message will be displayed
+                          ),
+                        );
+                        // Navigate to login screen
+                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                          return LoginScreen();
+                        }));
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'email-already-in-use') {
+                          // The email address is already in use
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Color.fromARGB(255, 255, 0, 0), // set the background color
+                              content: Text('Email Already in Use'), // set the message text
+                              duration: Duration(seconds: 2), // set the duration for how long the message will be displayed
+                            ),
+                          );
+                        } else {
+                          // Some other error occurred
+                          print('Error: $e');
+                        }
+                      } catch (e) {
+                        // Some other error occurred
+                        print('Error: $e');
+                      } 
+
+                    }
+
+
+
+
+
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll < Color > (Color(0xffFBB718)),
