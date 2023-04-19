@@ -30,6 +30,11 @@ class _CreateStudentState extends State < CreateStudent > {
 
   
     final nameController = TextEditingController();
+    final nameController1 = TextEditingController();
+    final nameController2 = TextEditingController();
+    final nameController3 = TextEditingController();
+    
+
     final usernameController = TextEditingController();
     final GradeController = TextEditingController();
     final GenderController = TextEditingController();
@@ -80,7 +85,17 @@ class _CreateStudentState extends State < CreateStudent > {
 
     String email = EController.text;
     String password = PController.text;
+
+
     String name = nameController.text;
+    String name1 = nameController1.text;
+    String name2 = nameController2.text;
+    String name3 = nameController3.text;
+    
+
+
+
+
     String username = usernameController.text;
 
     String Grade = GradeController.text;
@@ -106,7 +121,7 @@ class _CreateStudentState extends State < CreateStudent > {
 
               // Set the student's data
               batch.set(studentRef, {
-                "name": name,
+                "name": name1+" "+name+" "+name2+" "+name3,
                 "LRN": username,
                 "email": email,
                 "password": password,
@@ -222,7 +237,109 @@ class _CreateStudentState extends State < CreateStudent > {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(top: 8, left: 20),
-                      hintText: 'Name',
+                      hintText: 'Last Name',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+                      )
+                    ),
+                     
+                  )
+                )
+              ],
+            ),
+          ),
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  
+                  child: TextFormField(
+                    controller: nameController1,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'First Name',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+                      )
+                    ),
+                     
+                  )
+                )
+              ],
+            ),
+          ),
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  
+                  child: TextFormField(
+                    controller: nameController2,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Middle Name',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+                      )
+                    ),
+                     
+                  )
+                )
+              ],
+            ),
+          ),
+            Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: < Widget > [
+                SizedBox(height: 10),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A4859),
+                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 340,
+                  
+                  child: TextFormField(
+                    controller: nameController3,
+                    keyboardType: TextInputType.emailAddress,
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 8, left: 20),
+                      hintText: 'Extension Name',
                       hintStyle: TextStyle(
                         color: Colors.white,
                       )

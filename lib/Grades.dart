@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+
+
 class MyHomePage extends StatefulWidget {
   final String studentId;
-
+  
+  
   const MyHomePage({Key? key, required this.studentId}) : super(key: key);
 
   @override
@@ -12,7 +15,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late String _selectedYear;
-
+  
   @override
   void initState() {
     super.initState();
@@ -84,13 +87,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(width: 37,),
                 Container(
                   child: Text('FINAL',style: TextStyle(color: Colors.white)),
-                )
+                ),
+                
+                
               ],
+              
               
             ),
             
             
+            
           ),
+          
           
           
           Expanded(
@@ -110,6 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
                   return Text('No subjects found for this student.');
                 }
+              
+                
 
                 return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
@@ -267,7 +277,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                     ],
+                    
                   ),
+                  
                 ),
               );
             },
